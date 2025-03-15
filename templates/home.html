@@ -1,0 +1,117 @@
+<!-- 
+The purpose of this code is to create a web interface for predicting student math scores based on various input features. Here's what it does:
+1. Core Functionality
+Serves as a frontend form to collect student data for a machine learning model (eg.CatBoost).
+2. Predicts a student's math performance score using the input features.
+
+
+User Flow:
+1. User fills in student details (demographics, scores, etc.)
+2. Submits form ➔ Data sent to Flask backend
+3. CatBoost model processes features
+4. Prediction returned ➔ Displayed in {{results}}
+
+Correction Made: Fixed label/input mismatch for score fields
+-->
+
+
+
+
+<!DOCTYPE html>
+<html>
+<body>
+    <!-- Main container for the login/prediction interface -->
+    <div class="login">
+        <!-- Application title -->
+        <h1>Student Exam Performance Indicator</h1>
+
+        <!-- Prediction form that submits to Flask endpoint -->
+         <!-- Connects to a Flask backend endpoint (predict_datapoint) that runs the ML model -->
+          <!-- Uses POST method to securely send form data to the server -->
+        <form action="{{ url_for('predict_datapoint')}}" method="post">
+            <h1>
+                <legend>Student Exam Performance Prediction</legend>
+            </h1>
+
+            <!-- Gender selection dropdown -->
+            <div class="mb-3">
+                <label class="form-label">Gender</label>
+                <select class="form-control" name="gender" required>
+                    <option class="placeholder" selected disabled value="">Select your Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+
+            <!-- Ethnicity selection dropdown -->
+            <div class="mb-3">
+                <label class="form-label">Race or Ethnicity</label>
+                <select class="form-control" name="ethnicity" required>
+                    <option class="placeholder" selected disabled value="">Select Ethnicity</option>
+                    <option value="group A">Group A</option>
+                    <option value="group B">Group B</option>
+                    <option value="group C">Group C</option>
+                    <option value="group D">Group D</option>
+                    <option value="group E">Group E</option>
+                </select>
+            </div>
+
+            <!-- Parent education level dropdown -->
+            <div class="mb-3">
+                <label class="form-label">Parental Level of Education</label>
+                <select class="form-control" name="parental_level_of_education" required>
+                    <option class="placeholder" selected disabled value="">Select Parent Education</option>
+                    <option value="associate's degree">Associate's Degree</option>
+                    <option value="bachelor's degree">Bachelor's Degree</option>
+                    <option value="high school">High School</option>
+                    <option value="master's degree">Master's Degree</option>
+                    <option value="some college">Some College</option>
+                    <option value="some high school">Some High School</option>
+                </select>
+            </div>
+
+            <!-- Lunch type selection -->
+            <div class="mb-3">
+                <label class="form-label">Lunch Type</label>
+                <select class="form-control" name="lunch" required>
+                    <option class="placeholder" selected disabled value="">Select Lunch Type</option>
+                    <option value="free/reduced">Free/Reduced</option>
+                    <option value="standard">Standard</option>
+                </select>
+            </div>
+
+            <!-- Test preparation course status -->
+            <div class="mb-3">
+                <label class="form-label">Test preparation Course</label>
+                <select class="form-control" name="test_preparation_course" required>
+                    <option class="placeholder" selected disabled value="">Select Test Course</option>
+                    <option value="none">None</option>
+                    <option value="completed">Completed</option>
+                </select>
+            </div>
+
+            <!-- Writing score input (note: label says Reading Score - might need correction) -->
+            <div class="mb-3">
+                <label class="form-label">Writing Score out of 100</label>
+                <input class="form-control" type="number" name="reading_score"
+                    placeholder="Enter your Reading score" min='0' max='100' />
+            </div>
+
+            <!-- Reading score input (note: label says Writing Score - might need correction) -->
+            <div class="mb-3">
+                <label class="form-label">Reading Score out of 100</label>
+                <input class="form-control" type="number" name="writing_score"
+                    placeholder="Enter your Reading Score" min='0' max='100' />
+            </div>
+
+            <!-- Submission button -->
+            <div class="mb-3">
+                <input class="btn btn-primary" type="submit" value="Predict your Maths Score" />
+            </div>
+        </form>
+
+        <!-- Prediction results display area -->
+        <h2>THE prediction is {{results}}</h2>
+    </div>
+</body>
+</html>
