@@ -1,4 +1,4 @@
-# Deployment Configuration Guide
+# Deployment Configuration Guide for AWS
 
 ## AWS Elastic Beanstalk Configuration (.elasbean_extensions)
 
