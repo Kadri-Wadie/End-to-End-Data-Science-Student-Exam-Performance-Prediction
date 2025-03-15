@@ -98,8 +98,5 @@ Error tracking
 Performance metrics
 
 📜 License
-MIT License - See ![License](https://license/) for details.
+MIT License 
 
-For technical support, collaboration or error reporting:
-![LinkedIn](https://www.linkedin.com/in/kadri-wadie/)
-![Email](dir.gfe@gmail.com)
